@@ -21,12 +21,14 @@ import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 
 
+import CityPicker from "../Components/CityPicker";
+import DobPicker from '../Components/DobPicker'
 
-export default function LoginScreen({navigation}) {
+
+export default function SignUpScreen({navigation}) {
+
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
-
-
 
   const [loaded] = useFonts({
     "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
@@ -37,8 +39,7 @@ export default function LoginScreen({navigation}) {
   if (!loaded) {
     return <AppLoading />;
   }
-
-
+  
   return (
     <ImageBackground
       style={styles.loginBackgroundImage}
@@ -46,24 +47,47 @@ export default function LoginScreen({navigation}) {
     >
       <StatusBar
         barStyle="dark-content"
-        hidden={true}
+        hidden={false}
         backgroundColor="#fff"
         translucent={true}
       />
       <Image source={require("../assets/logo.png")} style={styles.logoImage2} />
 
-      <View style={styles.loginCardContainer}>
+      <View style={styles.signupCardContainer}>
         <View style={styles.topTextContainer}>
-          <View>
+        
             <Text style={styles.signIn}>Sign in</Text>
-            <View style={styles.signinLine} />
-          </View>
-
+           
+        
+             <View>
           <Text style={styles.signUp}>Sign Up</Text>
+          <View style={styles.signinLine} />
+             </View>
         </View>
 
 
         <View style={styles.inputsMainContainer}>
+
+
+        <View style={styles.nickNameContainer}>
+          <View style={styles.nickNameSubContainer}>
+            <Image source={require("../assets/icons/nickname.jpg")} />
+
+            <TextInput
+              keyboardType="email-address"
+              style={styles.inputMail}
+              placeholder="Nickname"
+              placeholderTextColor="#707070"
+              onChangeText={(text) => setMail(text)}
+              defaultValue={mail}
+            />
+          </View>
+        </View>
+
+
+
+
+
         <View style={styles.emailContainer}>
           <View style={styles.emailSubContainer}>
             <Image source={require("../assets/icons/mail.jpg")} />
@@ -100,7 +124,83 @@ export default function LoginScreen({navigation}) {
           </View>
         </View>
 
-          <Text onPress={()=>navigation.navigate('PasswordResetScreen')} style={styles.forgetPasswordText}>Forgot Password?</Text>
+
+
+        <View style={styles.passwordContainer}>
+          <View style={styles.passwordSubContainer}>
+            <Image source={require("../assets/icons/city.jpg")} />
+
+            
+
+            <CityPicker />
+
+          </View>
+        </View>
+
+
+
+        <View style={styles.dobContainer}>
+          <View style={styles.dobSubContainer}>
+            <Image source={require("../assets/icons/Calendar.jpg")} />
+
+            <TextInput
+              keyboardType="numbers-and-punctuation"
+              secureTextEntry={true}
+              style={styles.inputpass}
+              placeholder="Date of birth"
+              placeholderTextColor="#707070"
+              onChangeText={(text) => setPass(text)}
+              defaultValue={pass}
+            />
+
+          
+
+
+          </View>
+        </View>
+
+
+
+        <View style={styles.genderContainer}>
+
+     <TouchableOpacity>
+        <View style={styles.maleContainer}>
+          <View style={styles.maleSubContainer}>
+            <Image source={require("../assets/icons/male.jpg")} />
+
+            <Text style={{paddingHorizontal:wp('6%'),color:'#707070'}}>Male</Text>
+          </View>
+        </View>
+        </TouchableOpacity>
+
+
+         <TouchableOpacity>
+            <View style={styles.maleContainer}>
+          <View style={styles.maleSubContainer}>
+            <Image source={require("../assets/icons/female.jpg")} />
+
+            <Text style={{paddingHorizontal:wp('6%'),color:'#707070'}}>Female</Text>
+          </View>
+        </View>
+        </TouchableOpacity>
+
+
+
+
+
+        </View>
+
+
+
+
+       
+
+       
+
+
+
+
+         
                     
             </View>
 
@@ -122,13 +222,19 @@ export default function LoginScreen({navigation}) {
 
 
             </View>
+
            
-           <TouchableOpacity onPress={()=>navigation.navigate('HomeScreen')} style={styles.cardBottomCircle}>
+           <TouchableOpacity
+           activeOpacity={0}
+           underlayColor="#DDDDDD"
+           onPress={()=>navigation.navigate('InterestsScreen')} style={styles.cardBottomCircle}>
             <View >
-            <AntDesign name="arrowright" size={16} color="#fff" />
+            <AntDesign  name="arrowright" size={16} color="#fff" />
 
             </View>
             </TouchableOpacity>
+
+          
 
       </View>
     </ImageBackground>
@@ -150,25 +256,26 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
 
-  loginCardContainer: {
+  signupCardContainer: {
     width: wp("85%"),
-    height: hp("55%"),
+    height: hp("68%"),
     backgroundColor: "#fff",
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    bottom:hp('4%')
+    bottom:hp('2%')
 
   },
   topTextContainer: {
     flexDirection: "row",
     padding: hp("3%"),
     alignItems: "center",
+   marginBottom:hp('-1.5%')
   },
-  signIn: {
+  signUp: {
     fontSize: 18,
-
     fontFamily:'MoskBold700'
+
   },
 
   signinLine: {
@@ -176,14 +283,13 @@ const styles = StyleSheet.create({
     width: wp("15.5%"),
     marginVertical: hp(".5%"),
     borderBottomColor: "#7D34E3",
+    fontFamily:'MoskMedium500'
   },
 
-  signUp: {
+  signIn: {
     fontSize: 18,
     color: "#B0B6BA",
-    marginLeft: wp("10%"),
-    fontFamily:"MoskMedium500"
-    
+    marginRight: wp("10%"),
   },
 
   emailContainer: {
@@ -199,6 +305,7 @@ const styles = StyleSheet.create({
   },
   emailSubContainer: {
     flexDirection: "row",
+    
   },
 
   inputMail: {
@@ -223,6 +330,7 @@ const styles = StyleSheet.create({
   passwordSubContainer:
   {
     flexDirection: "row",  
+    alignItems:'center'
   },
 
   inputpass:
@@ -243,7 +351,7 @@ const styles = StyleSheet.create({
   },
   inputsMainContainer:
   {
-      marginTop:hp('5%'),
+      
   },
 
   socialContainer:
@@ -262,21 +370,93 @@ const styles = StyleSheet.create({
   socialMainContainer:
   {
       flexDirection:'row',
-      padding:hp('5%'),
+      padding:hp('1%'),
       alignSelf:'center'
   },
   cardBottomCircle:
   {
-      width:54,
-      height:54,
-      borderRadius:28,
-      backgroundColor:'#7D34E3',
+    width:50,
+    height:50,
+    borderRadius:28,
+    backgroundColor:'#7D34E3',
+    alignSelf:'center',
+    borderWidth:6,
+    borderColor:'#fff',
+    justifyContent:'center',
+    alignItems:'center',
+    position:'absolute',
+    bottom:hp('-4.6%'),
+    elevation:5
+  
+  },
+
+  nickNameContainer:
+  {
+    width: wp("75%"),
+    height: hp("7%"),
+    borderWidth: 0.5,
+    borderColor: "#707070",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+    marginBottom:hp('1.5%')
+
+  },
+
+  nickNameSubContainer:
+  {
+      flexDirection:'row'
+
+  },
+  dobContainer:
+  {
+    width: wp("75%"),
+    height: hp("7%"),
+    borderWidth: 0.5,
+    borderColor: "#707070",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+    marginTop:hp('1.3%')
+
+  },
+  dobSubContainer:
+  {
+      flexDirection:'row',
+      alignItems:'center'
+
+  },
+
+  maleContainer:
+  {
+    width: wp("35%"),
+    height: hp("7%"),
+    borderWidth: 0.5,
+    borderColor: "#707070",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+    marginTop:hp('1.3%'),
+    marginLeft:10
+
+
+  },
+
+  maleSubContainer:
+  {
+
+       flexDirection:'row',
+       alignItems:'center'
+
+  },
+
+  genderContainer:
+  {
+      flexDirection:'row',
       alignSelf:'center',
-      borderWidth:6,
-      borderColor:'#fff',
-      justifyContent:'center',
-      alignItems:'center',
-     position:'absolute',
-     bottom:hp('-3%')
+      
   }
 });

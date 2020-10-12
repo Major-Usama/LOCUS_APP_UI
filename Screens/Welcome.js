@@ -57,7 +57,9 @@ export default class Welcome extends Component {
                 LOGIN
               </Text>
             </View>
-            <Text style={styles.createAccountText}>Create a new account</Text>
+            <Text
+             onPress={()=>this.props.navigation.navigate("SignUpScreen")}
+            style={styles.createAccountText}>Create a new account</Text>
           </View>
         </ImageBackground>
 
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
   
   wrapper:
   {
-    paddingTop:Platform.OS==='android' ?StatusBar.currentHeight :0
+   
 
   },
 
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   logoImage: {
-    width: wp("42%"),
+    width: wp("48%"),
     height: hp("10%"),
     marginTop: hp("18%"),
     opacity: 0.9,

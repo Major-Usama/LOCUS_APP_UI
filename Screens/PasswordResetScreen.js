@@ -22,9 +22,8 @@ import { AppLoading } from "expo";
 
 
 
-export default function LoginScreen({navigation}) {
+export default function PasswordResetScreen({navigation}) {
   const [mail, setMail] = useState("");
-  const [pass, setPass] = useState("");
 
 
 
@@ -52,18 +51,22 @@ export default function LoginScreen({navigation}) {
       />
       <Image source={require("../assets/logo.png")} style={styles.logoImage2} />
 
-      <View style={styles.loginCardContainer}>
+       <View style={{height:hp('65%'),justifyContent:'flex-start'}}>
+             <View style={styles.loginCardContainer}>
         <View style={styles.topTextContainer}>
           <View>
-            <Text style={styles.signIn}>Sign in</Text>
+            <Text style={styles.signIn}>Forgot password?</Text>
             <View style={styles.signinLine} />
           </View>
 
-          <Text style={styles.signUp}>Sign Up</Text>
+          
+
+         
         </View>
 
+        <Text style={styles.prefereText}>Enter your email here</Text>
 
-        <View style={styles.inputsMainContainer}>
+
         <View style={styles.emailContainer}>
           <View style={styles.emailSubContainer}>
             <Image source={require("../assets/icons/mail.jpg")} />
@@ -78,59 +81,21 @@ export default function LoginScreen({navigation}) {
             />
           </View>
         </View>
-
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordSubContainer}>
-            <Image source={require("../assets/icons/lock.jpg")} />
-
-            <TextInput
-              keyboardType="numbers-and-punctuation"
-              secureTextEntry={true}
-              style={styles.inputpass}
-              placeholder="Password"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setPass(text)}
-              defaultValue={pass}
-            />
-
-            <Image style={{marginHorizontal:wp('-15%'),
-            alignSelf:'center',borderRadius:10}} source={require("../assets/icons/eye.jpg")} />
+        
+     
 
 
-          </View>
-        </View>
-
-          <Text onPress={()=>navigation.navigate('PasswordResetScreen')} style={styles.forgetPasswordText}>Forgot Password?</Text>
-                    
-            </View>
-
-
-            <View style={styles.socialMainContainer}>
-             
-             <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/google.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/facebook.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/twitter.jpg')}/>
-              </View>
-
-
-
-            </View>
-           
-           <TouchableOpacity onPress={()=>navigation.navigate('HomeScreen')} style={styles.cardBottomCircle}>
+             <TouchableOpacity  onPress={()=>navigation.navigate('PasswordResetScreen2')}style={styles.cardBottomCircle}>
+  
             <View >
-            <AntDesign name="arrowright" size={16} color="#fff" />
+            <AntDesign  name="arrowright" size={16} color="#fff" />
 
             </View>
             </TouchableOpacity>
 
       </View>
+      </View>
+ 
     </ImageBackground>
   );
 }
@@ -148,16 +113,21 @@ const styles = StyleSheet.create({
     width: wp("60%"),
     height: hp("10.5%"),
     alignSelf: "center",
+    marginBottom:hp('-9%')
+    
   },
 
   loginCardContainer: {
+      
     width: wp("85%"),
-    height: hp("55%"),
+    height: hp("32%"),
     backgroundColor: "#fff",
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    bottom:hp('4%')
+    marginVertical:hp('5%'),
+   
+    
 
   },
   topTextContainer: {
@@ -168,23 +138,29 @@ const styles = StyleSheet.create({
   signIn: {
     fontSize: 18,
 
-    fontFamily:'MoskBold700'
+    fontFamily:"MoskMedium500"
   },
 
   signinLine: {
     borderBottomWidth: 2,
-    width: wp("15.5%"),
+    width: wp("36%"),
     marginVertical: hp(".5%"),
     borderBottomColor: "#7D34E3",
   },
 
-  signUp: {
-    fontSize: 18,
-    color: "#B0B6BA",
-    marginLeft: wp("10%"),
-    fontFamily:"MoskMedium500"
-    
+
+  prefereText:
+  {
+      fontFamily:'MoskMedium500',
+      marginHorizontal:wp('7%'),
+      marginVertical:hp('-1%'),
+      color:"#707070",
+      fontSize:18,
+      opacity:0.5
   },
+
+
+  
 
   emailContainer: {
     width: wp("75%"),
@@ -195,10 +171,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
+    marginVertical:hp('5%')
 
   },
   emailSubContainer: {
     flexDirection: "row",
+    alignItems:'center'
   },
 
   inputMail: {
@@ -207,64 +185,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp("3%"),
   },
 
-  passwordContainer:
-  {
-    width: wp("75%"),
-    height: hp("7%"),
-    borderWidth: 0.5,
-    borderColor: "#707070",
-    borderRadius: 30,
-    alignSelf: "center",
-    justifyContent: "center",
-    padding: wp("5%"),
-    marginTop:hp('1.3%')
-
-  },
-  passwordSubContainer:
-  {
-    flexDirection: "row",  
-  },
-
-  inputpass:
-  {
-    width: wp("70%"),
-    height: hp("2.5%"),
-    paddingHorizontal: wp("3%"),
-
-  },
-
-  forgetPasswordText:
-  {
-      color:'#A77AE1',
-      fontSize:14,
-      marginTop:hp('3%'),
-      alignSelf:'flex-end',
-      marginRight:hp('3.5%')
-  },
-  inputsMainContainer:
-  {
-      marginTop:hp('5%'),
-  },
-
-  socialContainer:
-  {
-      width:38,
-      height:37,
-      backgroundColor:'#fff',
-      elevation:2,
-      borderRadius:19,
-      justifyContent:'center',
-      alignItems:'center',
-      marginLeft:wp('3%')
-      
-      
-  },
-  socialMainContainer:
-  {
-      flexDirection:'row',
-      padding:hp('5%'),
-      alignSelf:'center'
-  },
   cardBottomCircle:
   {
       width:54,
@@ -276,7 +196,12 @@ const styles = StyleSheet.create({
       borderColor:'#fff',
       justifyContent:'center',
       alignItems:'center',
-     position:'absolute',
-     bottom:hp('-3%')
-  }
+      position:'absolute',
+      bottom:wp('-7%'),
+      elevation:5
+      
+      
+      
+     
+  },
 });
