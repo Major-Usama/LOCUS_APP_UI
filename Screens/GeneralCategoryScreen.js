@@ -1,10 +1,19 @@
 import React,{useState} from 'react'
-import { StyleSheet, TextInput,Image, View,Platform,StatusBar ,SafeAreaView,Text} from 'react-native'
+import { StyleSheet, TextInput,Image, View,Platform,StatusBar
+   ,SafeAreaView,Text,Modal,Alert,TouchableWithoutFeedback,TouchableOpacity} from 'react-native'
+   
+
 import Header from '../Components/Header'
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
   } from "react-native-responsive-screen";
+
+
+import  SightImage from '../assets/sightImage.png'
+import sight from '../assets/icons/sight.png'
+import PriceSegment from '../Components/PriceSegment';
+
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
@@ -31,16 +40,17 @@ import shop from '../assets/icons/shopping.png'
 import  SportsImage from '../assets/sportsImage.png'
 import sports from '../assets/icons/sports.png'
 
-import  SightImage from '../assets/sightImage.png'
-import sight from '../assets/icons/sight.png'
+import ModalButtons from '../Components/ModalButtons'
+import ModalButtons2 from '../Components/ModalButton2';
+
 
 
 
 
 export default function GeneralCategoryScreen({navigation}) {
     const [pass, setPass] = useState("");
-
-
+    const [modalVisible, setModalVisible] = useState(false);
+     
 
 
     const [loaded] = useFonts({
@@ -59,6 +69,8 @@ export default function GeneralCategoryScreen({navigation}) {
 
             <Header />
 
+           
+          
 
             
         <View style={styles.searchContainer}>
@@ -74,9 +86,17 @@ export default function GeneralCategoryScreen({navigation}) {
               onChangeText={(text) => setPass(text)}
               defaultValue={pass}
             />
+             <TouchableWithoutFeedback
+            onPress={() => {
+              setModalVisible(true);
+            }}
 
-            <Image style={{
+             >
+                           
+                  <Image style={{
             alignSelf:'center',}} source={require('../assets/icons/modal.png')} />
+            </TouchableWithoutFeedback>
+
 
 
           </View>
@@ -105,6 +125,12 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={centerImage}
             backImage={backImage}
             text="Cafes"
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+               {
+                 title:"Cafes"
+               }
+
+            )}
             />
             
             
@@ -113,6 +139,13 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={art}
             backImage={artImage}
             text="Arts and Crafts"
+            
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+            {
+              title:"Arts and Crafts"
+            }
+
+         )}
             />
 
         </View>
@@ -124,6 +157,12 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={resto}
             backImage={RestoImage}
             text="Resturent"
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+            {
+              title:"Resturent"
+            }
+
+         )}
             />
             
             
@@ -132,6 +171,12 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={centerImage}
             backImage={ShopImage}
             text="Shopping"
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+            {
+              title:"Shopping"
+            }
+
+         )}
             />
 
         </View>
@@ -142,6 +187,12 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={sports}
             backImage={SportsImage}
             text="Sports and outdoor"
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+            {
+              title:"Sports and Outdoor"
+            }
+
+         )}
             />
             
             
@@ -150,10 +201,97 @@ export default function GeneralCategoryScreen({navigation}) {
             centerImage={sight}
             backImage={SightImage}
             text="Sightseeing"
+            onPress={()=>navigation.navigate('CategoryClickScreen',
+            {
+              title:"Sightseeing"
+            }
+
+         )}
             />
 
         </View>
         </ScrollView>
+
+
+        {/*Filter Modal */}
+           
+
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+
+
+            
+
+                <View style={styles.modalTopContainer}>
+                  <TouchableWithoutFeedback onPress={() => {
+                setModalVisible(!modalVisible);
+              }}>
+                  <Image source={require('../assets/icons/cross.png')}/>
+                  </TouchableWithoutFeedback>
+                  <Text style={styles.filters}>Filters</Text>
+
+                  <TouchableWithoutFeedback onPress={() => {
+                setModalVisible(!modalVisible);
+              }}>
+                  <Image source={require('../assets/icons/check.png')}/>
+                </TouchableWithoutFeedback>
+                </View>
+                
+
+                <View style={styles.separator} />
+
+                <Text style={styles.sortBy}>Sort by</Text>
+
+                 <View style={styles.nearestContainer}>
+          <View style={styles.nearestSubContainer}>
+
+            <Text style={styles.nearestText}>Nearest</Text>
+            <TouchableOpacity>
+            <Image source={require('../assets/icons/downArrow.png')}/>
+            </TouchableOpacity>
+
+            
+
+
+
+          </View>
+        </View>
+
+        <Text style={styles.price}>Price</Text>
+         <PriceSegment />
+         <Text style={styles.feature}>Features</Text>
+
+         <View style={{flexDirection:'row',}}>
+         <ModalButtons title="Accept Credit Cards" />
+         <ModalButtons2  title="Parking" />
+         <ModalButtons2  title="Wi-Fi" />
+       
+         </View>
+
+         <View style={{flexDirection:'row'}}>
+         <ModalButtons title="Outdoors seatings" />
+         <ModalButtons2  title="Live music" />
+         <ModalButtons2  title="Delivery" />
+       
+         </View>
+        
+        
+      
+           
+
+
+          </View>
+        </View>
+      </Modal>
+
         
             
         </SafeAreaView>
@@ -207,10 +345,6 @@ searchContainer:
     color:"#8338EB",
     fontSize:16,
  
-    
-
-    
-
 },
 
 passwordContainer:
@@ -258,8 +392,155 @@ passwordContainer:
     alignItems:'center',
     justifyContent:'space-evenly',
     marginTop:hp('1%')
+  },
+
+  modalView: {
+    width: '100%',
+    height: '80%',
+    marginTop: '60%',
+    backgroundColor: "#7D34E3",
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  openButton: {
+    backgroundColor: "orange",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    bottom: hp('3%')
+  },
+  textStyle: {
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+
+
+
+  
+  
+  bottomText: {
+
+    marginTop: hp('0.8%'),
+    color: "#D6D6D8",
+    fontSize: wp('3.5%')
+  },
+  text1View: {
+    width: wp('50%'),
+    marginLeft: wp('4%')
+  },
+  pdf: {
+    color: "#D6D6D8",
+
+
+
+
+  },
+ 
+
+  modalTopContainer:{
+    flexDirection:'row',
+    justifyContent:'space-around',
+    alignItems:'center',
+    width: wp('100%'),
+    marginTop:hp('4%')
+    
+
+  },
+
+  filters:
+  {
+    fontSize:25,
+    color:'#fff',
+    fontFamily:'MoskBold700',
+    fontWeight:'bold'
+    
+
+  },
+
+  separator:
+  {
+    borderBottomWidth:1,
+    borderBottomColor:"#fff",
+    width:wp('85%'),
+    marginTop:hp('3%'),
+
+  },
+
+  sortBy:{
+    fontSize:20,
+    fontFamily:'MoskMedium500',
+    fontWeight:'500',
+    color:'#fff',
+    alignSelf:'flex-start',
+    marginHorizontal:wp('9%'),
+    marginVertical:hp('2%')
+
+  },
+
+ 
+
+
+  nearestContainer:
+  {
+    width: wp("90%"),
+    height: hp("6%"),
+    borderWidth: 1,
+    borderColor: "#fff",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+   
+
+  },
+  nearestSubContainer:
+  {
+    flexDirection: "row",  
+    alignItems:'center',
+    justifyContent:'space-between'
+  },
+
+  nearestText:
+  {
+    fontSize:14,
+    fontFamily:'MoskMedium500',
+    color:'#fff'
+  },
+
+  price:
+  {
+    fontSize:20,
+    fontFamily:'MoskMedium500',
+    fontWeight:'500',
+    color:'#fff',
+    alignSelf:'flex-start',
+    marginHorizontal:wp('9%'),
+    marginVertical:hp('2.5%')
+
+  },
+
+  feature:
+  {
+    fontSize:20,
+    fontFamily:'MoskMedium500',
+    fontWeight:'500',
+    color:'#fff',
+    alignSelf:'flex-start',
+    marginHorizontal:wp('9%'),
+    marginVertical:hp('.5%')
+
   }
-
-
+  
 
 })

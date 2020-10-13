@@ -8,8 +8,9 @@ import {
 
   import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function CategoryBox({backImage,centerImage,text}) {
+export default function CategoryBox({backImage,centerImage,text,onPress}) {
 
     const [loaded] = useFonts({
         "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
@@ -24,6 +25,7 @@ export default function CategoryBox({backImage,centerImage,text}) {
 
     return (
         <View>
+            <TouchableOpacity onPress={onPress}>
         <ImageBackground style={styles.imageContainer} source={backImage}>
 
             <Image source={centerImage}/>
@@ -31,6 +33,7 @@ export default function CategoryBox({backImage,centerImage,text}) {
           
         </ImageBackground>
     <Text style={styles.bottomText}>{text}</Text>
+    </TouchableOpacity>
         </View>
     )
 }
