@@ -104,7 +104,7 @@ export default function GeneralCategoryScreen({navigation}) {
 
         <View style={styles.categortConteiner}>
            
-        <Text onPress={()=>navigation.navigate('CategoryClickScreen')} style={styles.Recomend}>Browse Activities in</Text>
+        <Text  style={styles.Recomend}>Browse Activities in</Text>
 
         <View style={styles.passwordContainer}>
           <View style={styles.passwordSubContainer}>
@@ -220,9 +220,7 @@ export default function GeneralCategoryScreen({navigation}) {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-        }}
+        
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>

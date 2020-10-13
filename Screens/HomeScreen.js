@@ -30,7 +30,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
 
 
     const [loaded] = useFonts({
@@ -72,6 +72,7 @@ export default function HomeScreen() {
                  subTitle1="Khayaban shahbaz (Karachi)"
                  subTitle2="Burgers Beverage Italian American Fast Food"
                  heart={emptyheart}
+                 onPress2={()=>navigation.navigate('ActivityInformationScreen')}
                 />
 
                 <HomeCard 
@@ -97,6 +98,7 @@ export default function HomeScreen() {
                  subTitle1="Khayaban shahbaz (Karachi)"
                  subTitle2="Burgers Beverage Italian American Fast Food"
                  heart={emptyheart}
+
                 />
                
                

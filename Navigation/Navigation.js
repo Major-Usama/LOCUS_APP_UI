@@ -25,6 +25,7 @@ import GeneralCategoryScreen from '../Screens/GeneralCategoryScreen';
 import FavoriteScreen from '../Screens/FavoriteScreen';
 import EditScreen from '../Screens/EditScreen';
 import CategoryClickScreen from '../Screens/CategoryClickScreen';
+import ActivityInformationScreen from '../Screens/ActivityInformationScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +56,7 @@ function MyTabs() {
           <AntDesign name="home" size={20} color={color} />
         ),
       }}
-      name="HoomeScreen" component={HomeScreen} />
+      name="HoomeScreen" component={HomeCat} />
 
       <Tab.Screen 
       options={{
@@ -96,16 +97,35 @@ function MyTabs() {
 
 const Stack = createStackNavigator();
 const Stack2 = createStackNavigator();
+const Stack3 = createStackNavigator();
 
 
 
 
 function GeneralCat() {
   return (
-    <NavigationContainer independent={true}>
-      <Stack2.Navigator headerMode="none" >
+    <NavigationContainer independent={true} headerMode>
+      <Stack2.Navigator headerMode="none"  initialRouteName={GeneralCategoryScreen}>
       <Stack2.Screen name="GeneralCategoryScreen" component={GeneralCategoryScreen} />
         <Stack2.Screen name="CategoryClickScreen" component={CategoryClickScreen} />
+       
+       
+    
+       
+      </Stack2.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function HomeCat() {
+  return (
+    <NavigationContainer independent={true} headerMode>
+      <Stack2.Navigator headerMode="none"  initialRouteName={HomeScreen}>
+      <Stack2.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack2.Screen name="ActivityInformationScreen" component={ActivityInformationScreen} />
+      
+       
+       
     
        
       </Stack2.Navigator>

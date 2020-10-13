@@ -8,7 +8,8 @@ import {
   StatusBar,
   Platform,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -224,15 +225,12 @@ export default function SignUpScreen({navigation}) {
             </View>
 
            
-           <TouchableOpacity
-           activeOpacity={0}
-           underlayColor="#DDDDDD"
-           onPress={()=>navigation.navigate('InterestsScreen')} style={styles.cardBottomCircle}>
-            <View >
-            <AntDesign  name="arrowright" size={16} color="#fff" />
+            <TouchableOpacity style={styles.cardBottomCircle}  onPress={()=>navigation.navigate('InterestsScreen')}>
+    
+            <AntDesign name="arrowright" size={16} color="#fff" />
 
-            </View>
             </TouchableOpacity>
+            
 
           
 
@@ -385,8 +383,8 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     position:'absolute',
-    bottom:hp('-4.6%'),
-    elevation:5
+    bottom:hp('-3%'),
+    
   
   },
 
