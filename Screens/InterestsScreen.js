@@ -8,35 +8,31 @@ import {
   StatusBar,
   Platform,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import InterestsBox from "../Components/InterestsBox";
 
-
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
 
-
-
   const [loaded] = useFonts({
-    "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
-    "MoskBold700": require('../assets/fonts/MoskBold700.ttf'),
-    
+    MoskMedium500: require("../assets/fonts/MoskMedium500.ttf"),
+    MoskBold700: require("../assets/fonts/MoskBold700.ttf"),
   });
 
   if (!loaded) {
     return <AppLoading />;
   }
-
 
   return (
     <ImageBackground
@@ -57,41 +53,28 @@ export default function LoginScreen() {
             <Text style={styles.signIn}>Tell us about you</Text>
             <View style={styles.signinLine} />
           </View>
-
-          
-
-         
         </View>
 
         <Text style={styles.prefereText}>What do you prefer?</Text>
 
+        <View style={styles.interestsBoxContainer}>
+          <View style={styles.firstRow}>
+            <InterestsBox text="Swimmming" />
+            <InterestsBox text="Gaming" />
+          </View>
 
-            <View style={styles.interestsBoxContainer}>
+          <View style={styles.secondRow}>
+            <InterestsBox text="Reading" />
+            <InterestsBox text="Playing" />
+          </View>
+        </View>
 
-                <View style={styles.firstRow}>
-                <InterestsBox text="Swimmming" />
-                <InterestsBox text="Gaming" />
-
-                </View>
-
-                <View style={styles.secondRow}>
-                <InterestsBox text="Reading" />
-                <InterestsBox text="Playing" />
-
-                </View>
-           
-            </View>
-        
-     
-
-
-            
-
-            <View style={styles.cardBottomCircle}>
-            <AntDesign name="arrowright" size={16} color="#fff" />
-
-            </View>
-
+        <TouchableOpacity
+          onPress={() => navigation.navigate("HomeScreen")}
+          style={styles.cardBottomCircle}
+        >
+          <AntDesign name="arrowright" size={16} color="#fff" />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -103,7 +86,7 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     opacity: 0.9,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    justifyContent:'space-evenly'
+    justifyContent: "space-evenly",
   },
 
   logoImage2: {
@@ -119,8 +102,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    bottom:hp('1%')
-
+    bottom: hp("1%"),
   },
   topTextContainer: {
     flexDirection: "row",
@@ -130,7 +112,7 @@ const styles = StyleSheet.create({
   signIn: {
     fontSize: 18,
 
-    fontFamily:"MoskMedium500"
+    fontFamily: "MoskMedium500",
   },
 
   signinLine: {
@@ -140,51 +122,39 @@ const styles = StyleSheet.create({
     borderBottomColor: "#7D34E3",
   },
 
- 
-  cardBottomCircle:
-  {
-      width:54,
-      height:54,
-      borderRadius:28,
-      backgroundColor:'#7D34E3',
-      alignSelf:'center',
-      borderWidth:6,
-      borderColor:'#fff',
-      justifyContent:'center',
-      alignItems:'center',
-      position:'absolute',
-      bottom:hp('-3.5%')
-     
+  cardBottomCircle: {
+    width: 54,
+    height: 54,
+    borderRadius: 28,
+    backgroundColor: "#7D34E3",
+    alignSelf: "center",
+    borderWidth: 6,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: hp("-3.5%"),
   },
 
-  prefereText:
-  {
-      fontFamily:'MoskMedium500',
-      marginHorizontal:wp('7%'),
-      marginVertical:hp('-1%'),
-      color:"#707070",
-      fontSize:18,
-      opacity:0.5
+  prefereText: {
+    fontFamily: "MoskMedium500",
+    marginHorizontal: wp("7%"),
+    marginVertical: hp("-1%"),
+    color: "#707070",
+    fontSize: 18,
+    opacity: 0.5,
   },
 
-  interestsBoxContainer:
-  {
-     marginRight:wp('5%'),
-      alignItems:'center',
-      
-      
-
+  interestsBoxContainer: {
+    marginRight: wp("5%"),
+    alignItems: "center",
   },
 
-  firstRow:
-  {
-      flexDirection:'row',
-      
-      
+  firstRow: {
+    flexDirection: "row",
   },
-  secondRow:
-  {
-      flexDirection:'row',
-      marginTop:hp('-5%')
-  }
+  secondRow: {
+    flexDirection: "row",
+    marginTop: hp("-5%"),
+  },
 });

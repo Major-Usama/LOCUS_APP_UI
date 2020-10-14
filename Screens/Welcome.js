@@ -8,7 +8,6 @@ import {
   Image,
   Platform,
   StatusBar,
-
 } from "react-native";
 
 import {
@@ -17,67 +16,70 @@ import {
 } from "react-native-responsive-screen";
 import Swiper from "react-native-swiper";
 
-export default class Welcome extends Component {
-  render() {
-    return (
-      
-      <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
+import { useFonts } from "@use-expo/font";
+import { AppLoading } from "expo";
 
+export default function Welcome({ navigation }) {
+  const [loaded] = useFonts({
+    MoskMedium500: require("../assets/fonts/MoskMedium500.ttf"),
+    MoskBold700: require("../assets/fonts/MoskBold700.ttf"),
+  });
 
-        <ImageBackground
-          source={require("../assets/backgroundImage.png")}
-          style={styles.ImageBackground}
-        >
-          <Image
-            source={require("../assets/logo.png")}
-            style={styles.logoImage}
-          />
-
-          <Text style={styles.welcomeText}>
-            It is a long{"\n"}established fact{"\n"}that a reader will
-            {"\n"} be distracted by {"\n"}the readable
-          </Text>
-        </ImageBackground>
-
-        <ImageBackground
-          source={require("../assets/backgroundImage.png")}
-          style={styles.ImageBackground2}
-        >
-          <Image
-            source={require("../assets/logo.png")}
-            style={styles.logoImage2}
-          />
-
-          <View>
-            <View style={styles.loginButtonContainer}>
-              <Text
-                onPress={() => this.props.navigation.navigate("LoginScreen")}
-                style={styles.loginText}
-              >
-                LOGIN
-              </Text>
-            </View>
-            <Text
-             onPress={()=>this.props.navigation.navigate("SignUpScreen")}
-            style={styles.createAccountText}>Create a new account</Text>
-          </View>
-        </ImageBackground>
-
-      </Swiper>
-      
-    );
+  if (!loaded) {
+    return <AppLoading />;
   }
+
+  return (
+    <Swiper style={styles.wrapper} showsButtons={false} loop={false}>
+      <ImageBackground
+        source={require("../assets/backgroundImage.png")}
+        style={styles.ImageBackground}
+      >
+        <Image
+          source={require("../assets/logo.png")}
+          style={styles.logoImage}
+        />
+
+        <Text style={styles.welcomeText}>
+          It is a long{"\n"}established fact{"\n"}that a reader will
+          {"\n"} be distracted by {"\n"}the readable
+        </Text>
+      </ImageBackground>
+
+      <ImageBackground
+        source={require("../assets/backgroundImage.png")}
+        style={styles.ImageBackground2}
+      >
+        <Image
+          source={require("../assets/logo.png")}
+          style={styles.logoImage2}
+        />
+
+        <View>
+          <View style={styles.loginButtonContainer}>
+            <Text
+              onPress={() => navigation.navigate("LoginScreen")}
+              style={styles.loginText}
+            >
+              LOGIN
+            </Text>
+          </View>
+          <Text
+            onPress={() => navigation.navigate("SignUpScreen")}
+            style={styles.createAccountText}
+          >
+            Create a new account
+          </Text>
+        </View>
+      </ImageBackground>
+    </Swiper>
+  );
 }
 
 AppRegistry.registerComponent("myproject", () => SwiperComponent);
 
 const styles = StyleSheet.create({
-  
-  wrapper:
-  {
-   
-
-  },
+  wrapper: {},
 
   slide1: {
     flex: 1,
@@ -114,7 +116,7 @@ const styles = StyleSheet.create({
   logoImage: {
     width: wp("48%"),
     height: hp("10%"),
-    marginTop: hp("18%"),
+    marginTop: hp("25%"),
     opacity: 0.9,
   },
   logoImage2: {
@@ -122,13 +124,13 @@ const styles = StyleSheet.create({
     height: hp("10.5%"),
     opacity: 0.9,
   },
-  
+
   welcomeText: {
     textAlign: "center",
-    fontWeight: "bold",
     fontSize: wp("9%"),
-    opacity: 0.6,
-    marginTop: hp("24%"),
+    opacity: 0.5,
+    marginTop: hp("14%"),
+    fontFamily: "MoskBold700",
   },
 
   loginButtonContainer: {
@@ -149,6 +151,9 @@ const styles = StyleSheet.create({
   createAccountText: {
     alignSelf: "center",
     color: "#000",
-    fontSize: wp("4.5%"),
+    fontSize: 17,
+
+    marginTop: hp("1%"),
+    fontFamily: "MoskBold700",
   },
 });

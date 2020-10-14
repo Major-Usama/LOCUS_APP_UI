@@ -9,38 +9,35 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
 } from "react-native";
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 
+import CityPicker2 from "../Components/CityPicker2";
+import DobPicker from "../Components/DobPicker";
 
-import CityPicker from "../Components/CityPicker";
-import DobPicker from '../Components/DobPicker'
-
-
-export default function SignUpScreen({navigation}) {
-
+export default function SignUpScreen({ navigation }) {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
 
   const [loaded] = useFonts({
-    "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
-    "MoskBold700": require('../assets/fonts/MoskBold700.ttf'),
-    
+    MoskMedium500: require("../assets/fonts/MoskMedium500.ttf"),
+    MoskBold700: require("../assets/fonts/MoskBold700.ttf"),
   });
 
   if (!loaded) {
     return <AppLoading />;
   }
-  
+
   return (
     <ImageBackground
       style={styles.loginBackgroundImage}
@@ -56,184 +53,142 @@ export default function SignUpScreen({navigation}) {
 
       <View style={styles.signupCardContainer}>
         <View style={styles.topTextContainer}>
-        
-            <Text style={styles.signIn}>Sign in</Text>
-           
-        
-             <View>
-          <Text style={styles.signUp}>Sign Up</Text>
-          <View style={styles.signinLine} />
-             </View>
-        </View>
+          <Text
+            onPress={() => navigation.navigate("LoginScreen")}
+            style={styles.signIn}
+          >
+            Sign in
+          </Text>
 
+          <View>
+            <Text style={styles.signUp}>Sign Up</Text>
+            <View style={styles.signinLine} />
+          </View>
+        </View>
 
         <View style={styles.inputsMainContainer}>
+          <View style={styles.nickNameContainer}>
+            <View style={styles.nickNameSubContainer}>
+              <Image source={require("../assets/icons/nickname.jpg")} />
 
-
-        <View style={styles.nickNameContainer}>
-          <View style={styles.nickNameSubContainer}>
-            <Image source={require("../assets/icons/nickname.jpg")} />
-
-            <TextInput
-              keyboardType="email-address"
-              style={styles.inputMail}
-              placeholder="Nickname"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setMail(text)}
-              defaultValue={mail}
-            />
-          </View>
-        </View>
-
-
-
-
-
-        <View style={styles.emailContainer}>
-          <View style={styles.emailSubContainer}>
-            <Image source={require("../assets/icons/mail.jpg")} />
-
-            <TextInput
-              keyboardType="email-address"
-              style={styles.inputMail}
-              placeholder="Email address"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setMail(text)}
-              defaultValue={mail}
-            />
-          </View>
-        </View>
-
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordSubContainer}>
-            <Image source={require("../assets/icons/lock.jpg")} />
-
-            <TextInput
-              keyboardType="numbers-and-punctuation"
-              secureTextEntry={true}
-              style={styles.inputpass}
-              placeholder="Password"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setPass(text)}
-              defaultValue={pass}
-            />
-
-            <Image style={{marginHorizontal:wp('-15%'),
-            alignSelf:'center',borderRadius:10}} source={require("../assets/icons/eye.jpg")} />
-
-
-          </View>
-        </View>
-
-
-
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordSubContainer}>
-            <Image source={require("../assets/icons/city.jpg")} />
-
-            
-
-            <CityPicker />
-
-          </View>
-        </View>
-
-
-
-        <View style={styles.dobContainer}>
-          <View style={styles.dobSubContainer}>
-            <Image source={require("../assets/icons/Calendar.jpg")} />
-
-            <TextInput
-              keyboardType="numbers-and-punctuation"
-              secureTextEntry={true}
-              style={styles.inputpass}
-              placeholder="Date of birth"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setPass(text)}
-              defaultValue={pass}
-            />
-
-          
-
-
-          </View>
-        </View>
-
-
-
-        <View style={styles.genderContainer}>
-
-     <TouchableOpacity>
-        <View style={styles.maleContainer}>
-          <View style={styles.maleSubContainer}>
-            <Image source={require("../assets/icons/male.jpg")} />
-
-            <Text style={{paddingHorizontal:wp('6%'),color:'#707070'}}>Male</Text>
-          </View>
-        </View>
-        </TouchableOpacity>
-
-
-         <TouchableOpacity>
-            <View style={styles.maleContainer}>
-          <View style={styles.maleSubContainer}>
-            <Image source={require("../assets/icons/female.jpg")} />
-
-            <Text style={{paddingHorizontal:wp('6%'),color:'#707070'}}>Female</Text>
-          </View>
-        </View>
-        </TouchableOpacity>
-
-
-
-
-
-        </View>
-
-
-
-
-       
-
-       
-
-
-
-
-         
-                    
+              <TextInput
+                keyboardType="email-address"
+                style={styles.inputMail}
+                placeholder="Nickname"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setMail(text)}
+                defaultValue={mail}
+              />
             </View>
+          </View>
 
+          <View style={styles.emailContainer}>
+            <View style={styles.emailSubContainer}>
+              <Image source={require("../assets/icons/mail.jpg")} />
 
-            <View style={styles.socialMainContainer}>
-             
-             <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/google.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/facebook.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/twitter.jpg')}/>
-              </View>
-
-
-
+              <TextInput
+                keyboardType="email-address"
+                style={styles.inputMail}
+                placeholder="Email address"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setMail(text)}
+                defaultValue={mail}
+              />
             </View>
+          </View>
 
-           
-            <TouchableOpacity style={styles.cardBottomCircle}  onPress={()=>navigation.navigate('InterestsScreen')}>
-    
-            <AntDesign name="arrowright" size={16} color="#fff" />
+          <View style={styles.passwordContainer}>
+            <View style={styles.passwordSubContainer}>
+              <Image source={require("../assets/icons/lock.jpg")} />
 
+              <TextInput
+                keyboardType="numbers-and-punctuation"
+                secureTextEntry={true}
+                style={styles.inputpass}
+                placeholder="Password"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setPass(text)}
+                defaultValue={pass}
+              />
+
+              <Image
+                style={{
+                  marginHorizontal: wp("-15%"),
+                  alignSelf: "center",
+                  borderRadius: 10,
+                }}
+                source={require("../assets/icons/eye.jpg")}
+              />
+            </View>
+          </View>
+
+          <View style={styles.passwordContainer}>
+            <View style={styles.passwordSubContainer}>
+              <Image source={require("../assets/icons/city.jpg")} />
+
+              <CityPicker2 />
+            </View>
+          </View>
+
+          <View style={styles.dobContainer}>
+            <View style={styles.dobSubContainer}>
+              <Image source={require("../assets/icons/Calendar.jpg")} />
+
+              <DobPicker />
+            </View>
+          </View>
+
+          <View style={styles.genderContainer}>
+            <TouchableOpacity>
+              <View style={styles.maleContainer}>
+                <View style={styles.maleSubContainer}>
+                  <Image source={require("../assets/icons/male.jpg")} />
+
+                  <Text
+                    style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
+                  >
+                    Male
+                  </Text>
+                </View>
+              </View>
             </TouchableOpacity>
-            
 
-          
+            <TouchableOpacity>
+              <View style={styles.maleContainer}>
+                <View style={styles.maleSubContainer}>
+                  <Image source={require("../assets/icons/female.jpg")} />
 
+                  <Text
+                    style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
+                  >
+                    Female
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.socialMainContainer}>
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/google.jpg")} />
+          </View>
+
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/facebook.jpg")} />
+          </View>
+
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/twitter.jpg")} />
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={styles.cardBottomCircle}
+          onPress={() => navigation.navigate("InterestsScreen")}
+        >
+          <AntDesign name="arrowright" size={16} color="#fff" />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -245,7 +200,7 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     opacity: 0.9,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    justifyContent:'space-evenly'
+    justifyContent: "space-evenly",
   },
 
   logoImage2: {
@@ -261,19 +216,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    bottom:hp('2%')
-
+    bottom: hp("2%"),
   },
   topTextContainer: {
     flexDirection: "row",
     padding: hp("3%"),
     alignItems: "center",
-   marginBottom:hp('-1.5%')
+    marginBottom: hp("-1.5%"),
   },
   signUp: {
     fontSize: 18,
-    fontFamily:'MoskBold700'
-
+    fontFamily: "MoskBold700",
   },
 
   signinLine: {
@@ -281,7 +234,7 @@ const styles = StyleSheet.create({
     width: wp("15.5%"),
     marginVertical: hp(".5%"),
     borderBottomColor: "#7D34E3",
-    fontFamily:'MoskMedium500'
+    fontFamily: "MoskMedium500",
   },
 
   signIn: {
@@ -299,11 +252,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-
   },
   emailSubContainer: {
     flexDirection: "row",
-    
   },
 
   inputMail: {
@@ -312,8 +263,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp("3%"),
   },
 
-  passwordContainer:
-  {
+  passwordContainer: {
     width: wp("75%"),
     height: hp("7%"),
     borderWidth: 0.5,
@@ -322,74 +272,58 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginTop:hp('1.3%')
-
+    marginTop: hp("1.3%"),
   },
-  passwordSubContainer:
-  {
-    flexDirection: "row",  
-    alignItems:'center'
+  passwordSubContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
-  inputpass:
-  {
+  inputpass: {
     width: wp("70%"),
     height: hp("2.5%"),
     paddingHorizontal: wp("3%"),
-
   },
 
-  forgetPasswordText:
-  {
-      color:'#A77AE1',
-      fontSize:14,
-      marginTop:hp('3%'),
-      alignSelf:'flex-end',
-      marginRight:hp('3.5%')
+  forgetPasswordText: {
+    color: "#A77AE1",
+    fontSize: 14,
+    marginTop: hp("3%"),
+    alignSelf: "flex-end",
+    marginRight: hp("3.5%"),
   },
-  inputsMainContainer:
-  {
-      
+  inputsMainContainer: {},
+
+  socialContainer: {
+    width: 38,
+    height: 37,
+    backgroundColor: "#fff",
+    elevation: 2,
+    borderRadius: 19,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: wp("3%"),
+  },
+  socialMainContainer: {
+    flexDirection: "row",
+    padding: hp("1%"),
+    alignSelf: "center",
+  },
+  cardBottomCircle: {
+    width: 50,
+    height: 50,
+    borderRadius: 28,
+    backgroundColor: "#7D34E3",
+    alignSelf: "center",
+    borderWidth: 6,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: hp("-4.8%"),
   },
 
-  socialContainer:
-  {
-      width:38,
-      height:37,
-      backgroundColor:'#fff',
-      elevation:2,
-      borderRadius:19,
-      justifyContent:'center',
-      alignItems:'center',
-      marginLeft:wp('3%')
-      
-      
-  },
-  socialMainContainer:
-  {
-      flexDirection:'row',
-      padding:hp('1%'),
-      alignSelf:'center'
-  },
-  cardBottomCircle:
-  {
-    width:50,
-    height:50,
-    borderRadius:28,
-    backgroundColor:'#7D34E3',
-    alignSelf:'center',
-    borderWidth:6,
-    borderColor:'#fff',
-    justifyContent:'center',
-    alignItems:'center',
-    position:'absolute',
-    bottom:hp('-3%'),
-    
-  
-  },
-
-  nickNameContainer:
-  {
+  nickNameContainer: {
     width: wp("75%"),
     height: hp("7%"),
     borderWidth: 0.5,
@@ -398,17 +332,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginBottom:hp('1.5%')
-
+    marginBottom: hp("1.5%"),
   },
 
-  nickNameSubContainer:
-  {
-      flexDirection:'row'
-
+  nickNameSubContainer: {
+    flexDirection: "row",
   },
-  dobContainer:
-  {
+  dobContainer: {
     width: wp("75%"),
     height: hp("7%"),
     borderWidth: 0.5,
@@ -417,18 +347,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginTop:hp('1.3%')
-
+    marginTop: hp("1.3%"),
   },
-  dobSubContainer:
-  {
-      flexDirection:'row',
-      alignItems:'center'
-
+  dobSubContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
-  maleContainer:
-  {
+  maleContainer: {
     width: wp("35%"),
     height: hp("7%"),
     borderWidth: 0.5,
@@ -437,24 +363,17 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginTop:hp('1.3%'),
-    marginLeft:10
-
-
+    marginTop: hp("1.3%"),
+    marginLeft: 10,
   },
 
-  maleSubContainer:
-  {
-
-       flexDirection:'row',
-       alignItems:'center'
-
+  maleSubContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
-  genderContainer:
-  {
-      flexDirection:'row',
-      alignSelf:'center',
-      
-  }
+  genderContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
 });

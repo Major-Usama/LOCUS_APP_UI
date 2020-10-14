@@ -8,36 +8,30 @@ import {
   StatusBar,
   Platform,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 
-
-
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
 
-
-
   const [loaded] = useFonts({
-    "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
-    "MoskBold700": require('../assets/fonts/MoskBold700.ttf'),
-    
+    MoskMedium500: require("../assets/fonts/MoskMedium500.ttf"),
+    MoskBold700: require("../assets/fonts/MoskBold700.ttf"),
   });
 
   if (!loaded) {
     return <AppLoading />;
   }
-
 
   return (
     <ImageBackground
@@ -59,77 +53,85 @@ export default function LoginScreen({navigation}) {
             <View style={styles.signinLine} />
           </View>
 
-          <Text style={styles.signUp}>Sign Up</Text>
+          <Text
+            onPress={() => navigation.navigate("SignUpScreen")}
+            style={styles.signUp}
+          >
+            Sign Up
+          </Text>
         </View>
-
 
         <View style={styles.inputsMainContainer}>
-        <View style={styles.emailContainer}>
-          <View style={styles.emailSubContainer}>
-            <Image source={require("../assets/icons/mail.jpg")} />
+          <View style={styles.emailContainer}>
+            <View style={styles.emailSubContainer}>
+              <Image source={require("../assets/icons/mail.jpg")} />
 
-            <TextInput
-              keyboardType="email-address"
-              style={styles.inputMail}
-              placeholder="Email address"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setMail(text)}
-              defaultValue={mail}
-            />
+              <TextInput
+                keyboardType="email-address"
+                style={styles.inputMail}
+                placeholder="Email address"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setMail(text)}
+                defaultValue={mail}
+              />
+            </View>
+          </View>
+
+          <View style={styles.passwordContainer}>
+            <View style={styles.passwordSubContainer}>
+              <Image source={require("../assets/icons/lock.jpg")} />
+
+              <TextInput
+                keyboardType="numbers-and-punctuation"
+                secureTextEntry={true}
+                style={styles.inputpass}
+                placeholder="Password"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setPass(text)}
+                defaultValue={pass}
+              />
+
+              <Image
+                style={{
+                  marginHorizontal: wp("-15%"),
+                  alignSelf: "center",
+                  borderRadius: 10,
+                }}
+                source={require("../assets/icons/eye.jpg")}
+              />
+            </View>
+          </View>
+
+          <Text
+            onPress={() => navigation.navigate("PasswordResetScreen")}
+            style={styles.forgetPasswordText}
+          >
+            Forgot Password?
+          </Text>
+        </View>
+
+        <View style={styles.socialMainContainer}>
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/google.jpg")} />
+          </View>
+
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/facebook.jpg")} />
+          </View>
+
+          <View style={styles.socialContainer}>
+            <Image source={require("../assets/icons/twitter.jpg")} />
           </View>
         </View>
 
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordSubContainer}>
-            <Image source={require("../assets/icons/lock.jpg")} />
-
-            <TextInput
-              keyboardType="numbers-and-punctuation"
-              secureTextEntry={true}
-              style={styles.inputpass}
-              placeholder="Password"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setPass(text)}
-              defaultValue={pass}
-            />
-
-            <Image style={{marginHorizontal:wp('-15%'),
-            alignSelf:'center',borderRadius:10}} source={require("../assets/icons/eye.jpg")} />
-
-
-          </View>
-        </View>
-
-          <Text onPress={()=>navigation.navigate('PasswordResetScreen')} style={styles.forgetPasswordText}>Forgot Password?</Text>
-                    
-            </View>
-
-
-            <View style={styles.socialMainContainer}>
-             
-             <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/google.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/facebook.jpg')}/>
-              </View>
-
-              <View style={styles.socialContainer}>
-                 <Image  source={require('../assets/icons/twitter.jpg')}/>
-              </View>
-
-
-
-            </View>
-           
-           <TouchableOpacity onPress={()=>navigation.navigate('HomeScreen')} style={styles.cardBottomCircle}>
-            <View >
+        <TouchableOpacity
+          onPress={() => navigation.navigate("HomeScreen")}
+          style={styles.cardBottomCircle}
+        >
+          <View>
             <AntDesign name="arrowright" size={16} color="#fff" />
-
-            </View>
-            </TouchableOpacity>
-
+          </View>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -141,7 +143,7 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     opacity: 0.9,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    justifyContent:'space-evenly'
+    justifyContent: "space-evenly",
   },
 
   logoImage2: {
@@ -157,8 +159,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    bottom:hp('4%')
-
+    bottom: hp("4%"),
   },
   topTextContainer: {
     flexDirection: "row",
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
   signIn: {
     fontSize: 18,
 
-    fontFamily:'MoskBold700'
+    fontFamily: "MoskBold700",
   },
 
   signinLine: {
@@ -182,8 +183,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#B0B6BA",
     marginLeft: wp("10%"),
-    fontFamily:"MoskMedium500"
-    
+    fontFamily: "MoskMedium500",
   },
 
   emailContainer: {
@@ -195,7 +195,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-
   },
   emailSubContainer: {
     flexDirection: "row",
@@ -207,8 +206,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp("3%"),
   },
 
-  passwordContainer:
-  {
+  passwordContainer: {
     width: wp("75%"),
     height: hp("7%"),
     borderWidth: 0.5,
@@ -217,66 +215,55 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginTop:hp('1.3%')
-
+    marginTop: hp("1.3%"),
   },
-  passwordSubContainer:
-  {
-    flexDirection: "row",  
+  passwordSubContainer: {
+    flexDirection: "row",
   },
 
-  inputpass:
-  {
+  inputpass: {
     width: wp("70%"),
     height: hp("2.5%"),
     paddingHorizontal: wp("3%"),
-
   },
 
-  forgetPasswordText:
-  {
-      color:'#A77AE1',
-      fontSize:14,
-      marginTop:hp('3%'),
-      alignSelf:'flex-end',
-      marginRight:hp('3.5%')
+  forgetPasswordText: {
+    color: "#A77AE1",
+    fontSize: 14,
+    marginTop: hp("3%"),
+    alignSelf: "flex-end",
+    marginRight: hp("3.5%"),
   },
-  inputsMainContainer:
-  {
-      marginTop:hp('5%'),
+  inputsMainContainer: {
+    marginTop: hp("5%"),
   },
 
-  socialContainer:
-  {
-      width:38,
-      height:37,
-      backgroundColor:'#fff',
-      elevation:2,
-      borderRadius:19,
-      justifyContent:'center',
-      alignItems:'center',
-      marginLeft:wp('3%')
-      
-      
+  socialContainer: {
+    width: 38,
+    height: 37,
+    backgroundColor: "#fff",
+    elevation: 2,
+    borderRadius: 19,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: wp("3%"),
   },
-  socialMainContainer:
-  {
-      flexDirection:'row',
-      padding:hp('5%'),
-      alignSelf:'center'
+  socialMainContainer: {
+    flexDirection: "row",
+    padding: hp("5%"),
+    alignSelf: "center",
   },
-  cardBottomCircle:
-  {
-      width:54,
-      height:54,
-      borderRadius:28,
-      backgroundColor:'#7D34E3',
-      alignSelf:'center',
-      borderWidth:6,
-      borderColor:'#fff',
-      justifyContent:'center',
-      alignItems:'center',
-     position:'absolute',
-     bottom:hp('-3%')
-  }
+  cardBottomCircle: {
+    width: 54,
+    height: 54,
+    borderRadius: 28,
+    backgroundColor: "#7D34E3",
+    alignSelf: "center",
+    borderWidth: 6,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: hp("-3%"),
+  },
 });

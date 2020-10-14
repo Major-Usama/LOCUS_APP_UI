@@ -30,7 +30,6 @@ import Girl from "../assets/girl.png";
 //card images
 import bella from "../assets/bella.png";
 
-
 //star
 import star from "../assets/icons/star.png";
 import halfstar from "../assets/icons/halfstar.png";
