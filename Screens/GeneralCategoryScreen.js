@@ -97,16 +97,10 @@ export default function GeneralCategoryScreen({ navigation }) {
       <View style={styles.categortConteiner}>
         <Text style={styles.Recomend}>Browse Activities in</Text>
 
-        <View style={styles.passwordContainer}>
-          <View style={styles.passwordSubContainer}>
-            <Image
-              style={{ marginLeft: wp("-2%"), width: 6, height: 10 }}
-              source={require("../assets/icons/city.jpg")}
-            />
-
+    
             <CityPicker />
-          </View>
-        </View>
+          
+        
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.catRow1}>

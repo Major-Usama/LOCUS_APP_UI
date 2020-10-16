@@ -1,37 +1,54 @@
 import React, { Component } from "react";
-import { Picker, SafeAreaView, Text } from "react-native";
+import { Picker, SafeAreaView, Text,View,Platform } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { Feather } from '@expo/vector-icons';
+
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class CityPicker extends Component {
-  state = {
-    hand: "right",
-  };
+
+    state = {
+      countries: ['uk'],
+    
+  }
+
 
   render() {
     return (
-      <SafeAreaView style={{}}>
-        <Picker
-          selectedValue={this.state.hand}
-          onValueChange={(hand) => this.setState({ hand })}
-          style={{
-            width: wp("26%"),
-            postion: "absolute",
-            color: "#707070",
-            opacity: 0.7,
-            marginHorizontal: wp("-.5%"),
-          }}
-          itemStyle={{ backgroundColor: "red" }}
-          mode="dialog"
-        >
-          <Picker.Item label="City1" value="right" />
-          <Picker.Item label="City2 " value="left" />
-          <Picker.Item label="City3" value="right2" />
-          <Picker.Item label="City4" value="left3" />
-        </Picker>
-      </SafeAreaView>
+         <View style={{zIndex:Platform.OS==='ios'?10:10,}}>
+              
+              <DropDownPicker 
+    items={[
+        {label: 'UK', value: 'uk', icon: () => <Feather name="flag" size={24} color="black" />},
+    {label: 'France', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />},
+    {label: 'Pakistan', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />},
+    {label: 'USA', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />}
+    ]}
+    style={{borderRadius:25}}
+
+    multiple={true}
+    multipleText="Rriyadh"
+    min={0}
+    max={10}
+    dropDownStyle={{marginTop:2,borderRadius:10}}
+    dropDownMaxHeight={250}
+
+    defaultValue={this.state.countries}
+    containerStyle={{height: 30,width:110,}}
+    itemStyle={{
+        justifyContent: 'center',
+        alignItems:"center"
+    }}
+    onChangeItem={item => this.setState({
+        countries: item, // an array of the selected items
+        
+    })}
+/>
+        </View>
+      
     );
   }
 }

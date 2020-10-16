@@ -23,7 +23,7 @@ export default class CityPicker extends Component {
             opacity: 0.7,
             marginHorizontal: wp("-.5%"),
           }}
-          mode="dialog"
+          mode="dropdown"
         >
           <Picker.Item label="City1" value="right" />
           <Picker.Item label="City2 " value="left" />
