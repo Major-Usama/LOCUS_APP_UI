@@ -42,6 +42,7 @@ import HomeCard from "../Components/HomeCard";
 import ModalButtons from "../Components/ModalButtons";
 import ModalButtons2 from "../Components/ModalButton2";
 import PriceSegment from "../Components/PriceSegment";
+import CityPicker2 from "../Components/CityPicker2";
 
 export default function CategoryClickScreen({ navigation, route, onPress2 }) {
   const { title } = route.params;
@@ -303,17 +304,19 @@ export default function CategoryClickScreen({ navigation, route, onPress2 }) {
 
             <Text style={styles.sortBy}>Sort by</Text>
 
-            <View style={styles.nearestContainer}>
-              <View style={styles.nearestSubContainer}>
-                <Text style={styles.nearestText}>Nearest</Text>
-                <TouchableOpacity>
-                  <Image source={require("../assets/icons/downArrow.png")} />
-                </TouchableOpacity>
-              </View>
+            <View style={styles.passwordContainer}>
+            <View style={styles.passwordSubContainer}>
+             
+
+              <CityPicker2  color="#fff"/>
             </View>
+          </View>
 
             <Text style={styles.price}>Price</Text>
             <PriceSegment />
+             
+             <View style={{marginTop:hp('1%')}}>
+
             <Text style={styles.feature}>Features</Text>
 
             <View style={{ flexDirection: "row" }}>
@@ -326,6 +329,7 @@ export default function CategoryClickScreen({ navigation, route, onPress2 }) {
               <ModalButtons title="Outdoors seatings" />
               <ModalButtons2 title="Live music" />
               <ModalButtons2 title="Delivery" />
+            </View>
             </View>
           </View>
         </View>
@@ -509,7 +513,23 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#fff",
     alignSelf: "flex-start",
-    marginHorizontal: wp("9%"),
+    marginHorizontal: wp("2%"),
     marginVertical: hp(".5%"),
+  },
+
+  passwordContainer: {
+    width: wp("90%"),
+    height: hp("7%"),
+    borderWidth: 0.5,
+    borderColor: "#fff",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+    marginTop: hp("1.3%"),
+  },
+  passwordSubContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

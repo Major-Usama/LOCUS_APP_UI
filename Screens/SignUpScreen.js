@@ -9,7 +9,6 @@ import {
   Platform,
   TextInput,
   TouchableOpacity,
-  TouchableHighlight,
 } from "react-native";
 
 import {
@@ -24,9 +23,16 @@ import { AppLoading } from "expo";
 
 import CityPicker2 from "../Components/CityPicker2";
 import DobPicker from "../Components/DobPicker";
+import GenderBox from "../Components/GenderBox";
+
+//GenderImages
+
+import male from "../assets/icons/male2.png";
+import female from "../assets/icons/female2.png";
 
 export default function SignUpScreen({ navigation }) {
   const [mail, setMail] = useState("");
+  const [mail2, setMail2] = useState("");
   const [pass, setPass] = useState("");
 
   const [loaded] = useFonts({
@@ -76,8 +82,8 @@ export default function SignUpScreen({ navigation }) {
                 style={styles.inputMail}
                 placeholder="Nickname"
                 placeholderTextColor="#707070"
-                onChangeText={(text) => setMail(text)}
-                defaultValue={mail}
+                onChangeText={(text) => setMail2(text)}
+                defaultValue={mail2}
               />
             </View>
           </View>
@@ -126,7 +132,7 @@ export default function SignUpScreen({ navigation }) {
             <View style={styles.passwordSubContainer}>
               <Image source={require("../assets/icons/city.jpg")} />
 
-              <CityPicker2 />
+              <CityPicker2 color="#000" />
             </View>
           </View>
 
@@ -139,33 +145,9 @@ export default function SignUpScreen({ navigation }) {
           </View>
 
           <View style={styles.genderContainer}>
-            <TouchableOpacity>
-              <View style={styles.maleContainer}>
-                <View style={styles.maleSubContainer}>
-                  <Image source={require("../assets/icons/male.jpg")} />
+            <GenderBox title="Male" male={male} />
 
-                  <Text
-                    style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
-                  >
-                    Male
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.maleContainer}>
-                <View style={styles.maleSubContainer}>
-                  <Image source={require("../assets/icons/female.jpg")} />
-
-                  <Text
-                    style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
-                  >
-                    Female
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
+            <GenderBox title="Female" male={female} />
           </View>
         </View>
 

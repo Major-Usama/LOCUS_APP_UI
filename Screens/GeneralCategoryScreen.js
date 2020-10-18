@@ -49,6 +49,7 @@ import sports from "../assets/icons/sports.png";
 
 import ModalButtons from "../Components/ModalButtons";
 import ModalButtons2 from "../Components/ModalButton2";
+import CityPicker2 from "../Components/CityPicker2";
 
 export default function GeneralCategoryScreen({ navigation }) {
   const [pass, setPass] = useState("");
@@ -96,11 +97,12 @@ export default function GeneralCategoryScreen({ navigation }) {
 
       <View style={styles.categortConteiner}>
         <Text style={styles.Recomend}>Browse Activities in</Text>
-
-    
-            <CityPicker />
-          
         
+        <View style={{width:wp('30%'),borderRadius:10,borderWidth:0.5,
+        height:hp('5%'),justifyContent:'center',borderColor:"#cccccc",}}>
+        <CityPicker />
+        </View>
+       
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.catRow1}>
@@ -204,17 +206,18 @@ export default function GeneralCategoryScreen({ navigation }) {
 
             <Text style={styles.sortBy}>Sort by</Text>
 
-            <View style={styles.nearestContainer}>
-              <View style={styles.nearestSubContainer}>
-                <Text style={styles.nearestText}>Nearest</Text>
-                <TouchableOpacity>
-                  <Image source={require("../assets/icons/downArrow.png")} />
-                </TouchableOpacity>
-              </View>
+            <View style={styles.passwordContainer}>
+            <View style={styles.passwordSubContainer}>
+             
+
+              <CityPicker2  color="#fff"/>
             </View>
+          </View>
 
             <Text style={styles.price}>Price</Text>
             <PriceSegment />
+            <View style={{marginTop:hp('1%')}}>
+              
             <Text style={styles.feature}>Features</Text>
 
             <View style={{ flexDirection: "row" }}>
@@ -228,6 +231,8 @@ export default function GeneralCategoryScreen({ navigation }) {
               <ModalButtons2 title="Live music" />
               <ModalButtons2 title="Delivery" />
             </View>
+            </View>
+
           </View>
         </View>
       </Modal>
@@ -423,7 +428,23 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#fff",
     alignSelf: "flex-start",
-    marginHorizontal: wp("9%"),
+    marginHorizontal: wp("2%"),
     marginVertical: hp(".5%"),
+  },
+
+  passwordContainer: {
+    width: wp("90%"),
+    height: hp("7%"),
+    borderWidth: 0.5,
+    borderColor: "#fff",
+    borderRadius: 30,
+    alignSelf: "center",
+    justifyContent: "center",
+    padding: wp("5%"),
+    marginTop: hp("1.3%"),
+  },
+  passwordSubContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

@@ -68,7 +68,7 @@ function MyTabs() {
           ),
         }}
         name="FavoriteScreen"
-        component={FavoriteScreen}
+        component={FavCat}
       />
 
       <Tab.Screen
@@ -88,6 +88,7 @@ function MyTabs() {
 const Stack = createStackNavigator();
 const Stack2 = createStackNavigator();
 const Stack3 = createStackNavigator();
+const Stack4 = createStackNavigator();
 
 function GeneralCat() {
   return (
@@ -127,6 +128,26 @@ function HomeCat() {
           component={CategoryClickScreen}
         />
       </Stack3.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
+
+
+
+function FavCat() {
+  return (
+    <NavigationContainer independent={true} headerMode>
+      <Stack4.Navigator headerMode="none" >
+        <Stack4.Screen name="FavoriteScreen" component={FavoriteScreen} />
+        <Stack4.Screen
+          name="ActivityInformationScreen"
+          component={ActivityInformationScreen}
+        />
+        
+      </Stack4.Navigator>
     </NavigationContainer>
   );
 }

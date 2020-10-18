@@ -12,10 +12,10 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import { AntDesign } from "@expo/vector-icons";
-
+import GenderBox from "../Components/GenderBox";
 import CityPicker2 from "../Components/CityPicker2";
 import DobPicker from "../Components/DobPicker";
+import Header from "../Components/Header";
 
 import {
   widthPercentageToDP as wp,
@@ -24,8 +24,12 @@ import {
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
-import Header from "../Components/Header";
+
 import { ScrollView } from "react-native-gesture-handler";
+
+//Gender Boxes
+import male from "../assets/icons/male2.png";
+import female from "../assets/icons/female2.png";
 
 export default function EditScreen({ navigation }) {
   const [mail, setMail] = useState("");
@@ -124,33 +128,9 @@ export default function EditScreen({ navigation }) {
             </View>
 
             <View style={styles.genderContainer}>
-              <TouchableOpacity>
-                <View style={styles.maleContainer}>
-                  <View style={styles.maleSubContainer}>
-                    <Image source={require("../assets/icons/male.jpg")} />
+              <GenderBox title="Male" male={male} />
 
-                    <Text
-                      style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
-                    >
-                      Male
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity>
-                <View style={styles.maleContainer}>
-                  <View style={styles.maleSubContainer}>
-                    <Image source={require("../assets/icons/female.jpg")} />
-
-                    <Text
-                      style={{ paddingHorizontal: wp("6%"), color: "#707070" }}
-                    >
-                      Female
-                    </Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
+              <GenderBox male={female} title="Female" />
             </View>
           </View>
         </View>

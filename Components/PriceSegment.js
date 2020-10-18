@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: wp("4%"),
-    marginTop: hp("-2.6%"),
+    marginTop: hp("-1.5%"),
   },
 
   headerText: {

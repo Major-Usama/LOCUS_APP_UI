@@ -1,36 +1,38 @@
 import React, { Component } from "react";
-import { Picker, SafeAreaView, Text } from "react-native";
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
+import { Container, Header, Content, Icon, Picker, Form } from "native-base";
 
-export default class CityPicker extends Component {
-  state = {
-    hand: "right",
-  };
-
+export default class CityPicker2 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "key1"
+    };
+  }
+  onValueChange(value) {
+    this.setState({
+      selected: value
+    });
+  }
   render() {
     return (
-      <SafeAreaView style={{}}>
-        <Picker
-          selectedValue={this.state.hand}
-          onValueChange={(hand) => this.setState({ hand })}
-          style={{
-            width: wp("65%"),
-            postion: "absolute",
-            color: "#707070",
-            opacity: 0.7,
-            marginHorizontal: wp("-.5%"),
-          }}
-          mode="dropdown"
-        >
-          <Picker.Item label="City1" value="right" />
-          <Picker.Item label="City2 " value="left" />
-          <Picker.Item label="City3" value="right2" />
-          <Picker.Item label="City4" value="left3" />
-        </Picker>
-      </SafeAreaView>
+                  
+            <Picker
+              mode="dropdown"
+              
+              iosIcon={<Icon name="arrow-down" />}
+              style={{ width: undefined,color:this.props.color }}
+              selectedValue={this.state.selected}
+              onValueChange={this.onValueChange.bind(this)}
+            >
+              <Picker.Item label="UK" value="key0" />
+              <Picker.Item label="USA" value="key1" />
+              <Picker.Item label="Pakistan" value="key2" />
+              <Picker.Item label="Saudi Arabia" value="key3" />
+              <Picker.Item label="Spain" value="key4" />
+            </Picker>
+         
+      
+    
     );
   }
 }

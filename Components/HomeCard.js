@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontFamily: "MoskMedium500",
-    fontSize: 5,
+    fontSize: 7,
     color: "#454F63",
     marginLeft: wp("2%"),
     opacity: 0.8,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   subtitle1: {
-    fontSize: 5,
+    fontSize: 7,
     fontFamily: "MoskMedium500",
     marginLeft: wp(".5%"),
   },
@@ -145,13 +145,13 @@ const styles = StyleSheet.create({
   },
 
   subtitle2: {
-    fontSize: 5,
+    fontSize: 7,
     fontFamily: "MoskMedium500",
     marginLeft: wp(".5%"),
   },
 
   subtitle3: {
-    fontSize: 5.5,
+    fontSize: 7.5,
     fontFamily: "MoskMedium500",
     marginLeft: wp(".5%"),
     marginRight: 3,

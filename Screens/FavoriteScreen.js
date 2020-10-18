@@ -67,11 +67,7 @@ export default function FavoriteScreen({ navigation, route }) {
           <View style={styles.titleContainer}>
             <Text style={styles.Recomend}>Favorites</Text>
           </View>
-          <ScrollView
-            style={{ marginTop: hp("-5%") }}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
+          <View style={{ marginTop: hp("-5%") }}>
             <View style={styles.cardFirstRow}>
               <HomeCard
                 image={bella}
@@ -84,6 +80,9 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
 
               <HomeCard
@@ -97,30 +96,17 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
-              />
-              <HomeCard
-                image={bella}
-                title="Bella Vita"
-                star1={star}
-                star2={star}
-                star3={star}
-                star4={star}
-                star5={halfstar}
-                subTitle1="Khayaban shahbaz (Karachi)"
-                subTitle2="Burgers Beverage Italian American Fast Food"
-                heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
             </View>
-          </ScrollView>
+          </View>
         </View>
 
         {/* Second Cards rows */}
         <View>
-          <ScrollView
-            style={{ marginTop: hp("0%") }}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
+          <View style={{ marginTop: hp("0%") }}>
             <View style={styles.cardFirstRow}>
               <HomeCard
                 image={tandoor}
@@ -133,6 +119,9 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
 
               <HomeCard
@@ -146,31 +135,18 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
-              />
-              <HomeCard
-                image={bella}
-                title="Bella Vita"
-                star1={star}
-                star2={star}
-                star3={star}
-                star4={star}
-                star5={halfstar}
-                subTitle1="Khayaban shahbaz (Karachi)"
-                subTitle2="Burgers Beverage Italian American Fast Food"
-                heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
             </View>
-          </ScrollView>
+          </View>
         </View>
 
         {/* Third Cards rows */}
 
         <View>
-          <ScrollView
-            style={{ marginTop: hp("0%") }}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
+          <View style={{ marginTop: hp("0%") }}>
             <View style={styles.cardFirstRow}>
               <HomeCard
                 image={spice}
@@ -183,6 +159,9 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
 
               <HomeCard
@@ -196,21 +175,12 @@ export default function FavoriteScreen({ navigation, route }) {
                 subTitle1="Khayaban shahbaz (Karachi)"
                 subTitle2="Burgers Beverage Italian American Fast Food"
                 heart={Heart2}
-              />
-              <HomeCard
-                image={bella}
-                title="Bella Vita"
-                star1={star}
-                star2={star}
-                star3={star}
-                star4={star}
-                star5={halfstar}
-                subTitle1="Khayaban shahbaz (Karachi)"
-                subTitle2="Burgers Beverage Italian American Fast Food"
-                heart={Heart2}
+                onPress2={() =>
+                  navigation.navigate("ActivityInformationScreen")
+                }
               />
             </View>
-          </ScrollView>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -268,6 +238,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "flex-start",
     padding: wp("4%"),
+    left: wp("2%"),
   },
 
   othersLike: {

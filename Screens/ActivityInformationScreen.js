@@ -59,9 +59,7 @@ export default function ActivityInformationScreen({ navigation }) {
         style={{ marginVertical: hp("-5%"), zIndex: -1 }}
       >
         <View style={styles.titleContainer}>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("HomeScreen")}
-          >
+          <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
             <Image source={require("../assets/icons/backArrow.png")} />
           </TouchableWithoutFeedback>
 

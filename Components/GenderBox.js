@@ -3,6 +3,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Image,
   View,
   TouchableHighlight,
 } from "react-native";
@@ -39,35 +40,49 @@ export default class ModalButtons extends Component {
   }
   render() {
     return (
-      <View
-        style={[
-          styles.container,
-          { backgroundColor: this.state.backgroundColor },
-        ]}
-      >
-        <TouchableWithoutFeedback onPress={this.onClick}>
-          <View>
-            <Text style={{ color: "#000" }}>{this.props.text}</Text>
+      <TouchableWithoutFeedback onPress={this.onClick}>
+        <View
+          style={[
+            styles.maleContainer,
+            { backgroundColor: this.state.backgroundColor },
+          ]}
+        >
+          <View style={styles.maleSubContainer}>
+            <Image source={this.props.male} />
+
+            <Text
+              style={{
+                paddingHorizontal: wp("6%"),
+                color: "#000",
+                opacity: 0.8,
+              }}
+            >
+              {this.props.title}
+            </Text>
           </View>
-        </TouchableWithoutFeedback>
-      </View>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
+  maleContainer: {
     width: wp("35%"),
-    height: hp("15%"),
-    borderWidth: 0.1,
+    height: hp("7%"),
+    borderWidth: 0.5,
     borderColor: "#707070",
-    borderRadius: 40,
+    borderRadius: 30,
+    alignSelf: "center",
     justifyContent: "center",
+    padding: wp("5%"),
+    marginTop: hp("1.3%"),
+    marginLeft: 10,
+  },
+
+  maleSubContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    marginVertical: hp("4%"),
-    marginLeft: wp("5%"),
   },
   instructions: {},
 });
 AppRegistry.registerComponent("ModalButtons", () => ModalButtons);
-
-

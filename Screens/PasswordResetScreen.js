@@ -8,35 +8,29 @@ import {
   StatusBar,
   Platform,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 
-
-
-export default function PasswordResetScreen({navigation}) {
+export default function PasswordResetScreen({ navigation }) {
   const [mail, setMail] = useState("");
 
-
-
   const [loaded] = useFonts({
-    "MoskMedium500": require('../assets/fonts/MoskMedium500.ttf'),
-    "MoskBold700": require('../assets/fonts/MoskBold700.ttf'),
-    
+    MoskMedium500: require("../assets/fonts/MoskMedium500.ttf"),
+    MoskBold700: require("../assets/fonts/MoskBold700.ttf"),
   });
 
   if (!loaded) {
     return <AppLoading />;
   }
-
 
   return (
     <ImageBackground
@@ -51,51 +45,42 @@ export default function PasswordResetScreen({navigation}) {
       />
       <Image source={require("../assets/logo.png")} style={styles.logoImage2} />
 
-       <View style={{height:hp('65%'),justifyContent:'flex-start'}}>
-             <View style={styles.loginCardContainer}>
-        <View style={styles.topTextContainer}>
-          <View>
-            <Text style={styles.signIn}>Forgot password?</Text>
-            <View style={styles.signinLine} />
-          </View>
-
-          
-
-         
-        </View>
-
-        <Text style={styles.prefereText}>Enter your email here</Text>
-
-
-        <View style={styles.emailContainer}>
-          <View style={styles.emailSubContainer}>
-            <Image source={require("../assets/icons/mail.jpg")} />
-
-            <TextInput
-              keyboardType="email-address"
-              style={styles.inputMail}
-              placeholder="Email address"
-              placeholderTextColor="#707070"
-              onChangeText={(text) => setMail(text)}
-              defaultValue={mail}
-            />
-          </View>
-        </View>
-        
-     
-
-
-             <TouchableOpacity  onPress={()=>navigation.navigate('PasswordResetScreen2')}style={styles.cardBottomCircle}>
-  
-            <View >
-            <AntDesign  name="arrowright" size={16} color="#fff" />
-
+      <View style={{ height: hp("65%"), justifyContent: "flex-start" }}>
+        <View style={styles.loginCardContainer}>
+          <View style={styles.topTextContainer}>
+            <View>
+              <Text style={styles.signIn}>Forgot password?</Text>
+              <View style={styles.signinLine} />
             </View>
-            </TouchableOpacity>
+          </View>
 
+          <Text style={styles.prefereText}>Enter your email here</Text>
+
+          <View style={styles.emailContainer}>
+            <View style={styles.emailSubContainer}>
+              <Image source={require("../assets/icons/mail.jpg")} />
+
+              <TextInput
+                keyboardType="email-address"
+                style={styles.inputMail}
+                placeholder="Email address"
+                placeholderTextColor="#707070"
+                onChangeText={(text) => setMail(text)}
+                defaultValue={mail}
+              />
+            </View>
+          </View>
+
+          <TouchableOpacity
+            onPress={() => navigation.navigate("PasswordResetScreen2")}
+            style={styles.cardBottomCircle}
+          >
+            <View>
+              <AntDesign name="arrowright" size={16} color="#fff" />
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      </View>
- 
     </ImageBackground>
   );
 }
@@ -106,29 +91,24 @@ const styles = StyleSheet.create({
     height: hp("100%"),
     opacity: 0.9,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    justifyContent:'space-evenly'
+    justifyContent: "space-evenly",
   },
 
   logoImage2: {
     width: wp("60%"),
     height: hp("10.5%"),
     alignSelf: "center",
-    marginBottom:hp('-9%')
-    
+    marginBottom: hp("-9%"),
   },
 
   loginCardContainer: {
-      
     width: wp("85%"),
     height: hp("32%"),
     backgroundColor: "#fff",
     alignSelf: "center",
     borderRadius: 10,
     elevation: 5,
-    marginVertical:hp('5%'),
-   
-    
-
+    marginVertical: hp("5%"),
   },
   topTextContainer: {
     flexDirection: "row",
@@ -138,7 +118,7 @@ const styles = StyleSheet.create({
   signIn: {
     fontSize: 18,
 
-    fontFamily:"MoskMedium500"
+    fontFamily: "MoskMedium500",
   },
 
   signinLine: {
@@ -148,19 +128,14 @@ const styles = StyleSheet.create({
     borderBottomColor: "#7D34E3",
   },
 
-
-  prefereText:
-  {
-      fontFamily:'MoskMedium500',
-      marginHorizontal:wp('7%'),
-      marginVertical:hp('-1%'),
-      color:"#707070",
-      fontSize:18,
-      opacity:0.5
+  prefereText: {
+    fontFamily: "MoskMedium500",
+    marginHorizontal: wp("7%"),
+    marginVertical: hp("-1%"),
+    color: "#707070",
+    fontSize: 18,
+    opacity: 0.5,
   },
-
-
-  
 
   emailContainer: {
     width: wp("75%"),
@@ -171,12 +146,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     padding: wp("5%"),
-    marginVertical:hp('5%')
-
+    marginVertical: hp("5%"),
   },
   emailSubContainer: {
     flexDirection: "row",
-    alignItems:'center'
+    alignItems: "center",
   },
 
   inputMail: {
@@ -185,23 +159,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp("3%"),
   },
 
-  cardBottomCircle:
-  {
-      width:54,
-      height:54,
-      borderRadius:28,
-      backgroundColor:'#7D34E3',
-      alignSelf:'center',
-      borderWidth:6,
-      borderColor:'#fff',
-      justifyContent:'center',
-      alignItems:'center',
-      position:'absolute',
-      bottom:wp('-7%'),
-      elevation:5
-      
-      
-      
-     
+  cardBottomCircle: {
+    width: 54,
+    height: 54,
+    borderRadius: 28,
+    backgroundColor: "#7D34E3",
+    alignSelf: "center",
+    borderWidth: 6,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    bottom: wp("-7%"),
+    elevation: 5,
   },
 });

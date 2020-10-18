@@ -1,54 +1,45 @@
 import React, { Component } from "react";
-import { Picker, SafeAreaView, Text,View,Platform } from "react-native";
+import { Container, Header, Content, Icon, Picker, Form } from "native-base";
+import {View} from 'react-native'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { Feather } from '@expo/vector-icons';
 
-import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class CityPicker extends Component {
-
-    state = {
-      countries: ['uk'],
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: "key1"
+    };
   }
-
-
+  onValueChange(value) {
+    this.setState({
+      selected: value
+    });
+  }
   render() {
     return (
-         <View style={{zIndex:Platform.OS==='ios'?10:10,}}>
               
-              <DropDownPicker 
-    items={[
-        {label: 'UK', value: 'uk', icon: () => <Feather name="flag" size={24} color="black" />},
-    {label: 'France', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />},
-    {label: 'Pakistan', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />},
-    {label: 'USA', value: 'france', icon: () => <Feather name="flag" size={24} color="black" />}
-    ]}
-    style={{borderRadius:25}}
-
-    multiple={true}
-    multipleText="Rriyadh"
-    min={0}
-    max={10}
-    dropDownStyle={{marginTop:2,borderRadius:10}}
-    dropDownMaxHeight={250}
-
-    defaultValue={this.state.countries}
-    containerStyle={{height: 30,width:110,}}
-    itemStyle={{
-        justifyContent: 'center',
-        alignItems:"center"
-    }}
-    onChangeItem={item => this.setState({
-        countries: item, // an array of the selected items
-        
-    })}
-/>
-        </View>
+            <Picker
+              mode="dropdown"
+              
+              iosIcon={<Icon name="arrow-down" />}
+              style={{ width: undefined }}
+              selectedValue={this.state.selected}
+              onValueChange={this.onValueChange.bind(this)}
+            >
+              <Picker.Item label="UK" value="key0" />
+              <Picker.Item label="USA" value="key1" />
+              <Picker.Item label="Pak" value="key2" />
+              <Picker.Item label="KSA" value="key3" />
+              <Picker.Item label="Aus" value="key4" />
+            </Picker>
+            
+         
       
+    
     );
   }
 }
